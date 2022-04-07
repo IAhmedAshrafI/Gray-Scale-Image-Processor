@@ -1,3 +1,12 @@
+// FCI – Programming 1 – 2022 - Assignment 3
+// Program Name: Gray-Scale-Image-Processor.cpp
+// Last Modification Date: 7/4/2022
+// Author1 and ID and Group: Ahmed Ashraf ... ID: 20210535
+// Author2 and ID and Group: Abdelrhman Hamdy ... ID: 20210202
+// Author3 and ID and Group: Mostafa Mahmoud ... ID: 20210398
+// Teaching Assistant: Dr/ Mohamed EL-Ramly
+// Purpose: Photoshop Program
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
