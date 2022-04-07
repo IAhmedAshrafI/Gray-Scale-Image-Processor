@@ -7,6 +7,7 @@
 
 using namespace std;
 unsigned char image[SIZE][SIZE];
+unsigned char image2[SIZE][SIZE];
 
 int loadImage ();
 void saveImage ();
@@ -17,10 +18,13 @@ void R_360_degree ();
 void invert_Image ();
 void  black_and_white();
 void  Flip_Image();
+void Darken_Lighten_image();
+void Merge_Filter();
 int main()
 {
   string start="1";
   int failed;
+  int strt = 1;
 
     while (start != "0"){
     cout<<"Press 0 to exit, any key to continue ..."<< endl;
@@ -39,19 +43,13 @@ while (failed){
         cout << endl;
   int way;
   cout << endl;
-    cout <<"choose Filter from 1 to c:"<< endl;
+    cout <<"choose Filter from 1 to 6:"<< endl;
     cout <<"Filter 1: Black and White Image."<< endl;
     cout << "Filter 2: Invert Image."<< endl;
     cout << "Filter 3: Merge Image."<< endl;
     cout <<"Filter 4: Flip Image."<< endl;
     cout << "Filter 5: Rotate Image."<< endl;
     cout << "Filter 6: Darken and Lighten Image."<< endl;
-    cout << "Filter 7: Detect Image Edges."<< endl;
-    cout << "Filter 8: Enlarge Image."<< endl;
-    cout << "Filter 9: Shrink Image."<< endl;
-    cout << "Filter a: Mirror Image."<< endl;
-    cout << "Filter b: Shuffle Image."<< endl;
-    cout << "Filter c: Blur Image."<< endl;
     cin>>way;
     if (way == 1){
         black_and_white();
@@ -59,22 +57,27 @@ while (failed){
     if (way == 2){
         invert_Image();
     }
+    if (way == 3){
+        Merge_Filter();
+    }
     if (way == 4){
         Flip_Image();
     }
-    if (way == 5){
-        cout << "Rotate (90), (180) , (270) or (360) degrees?" << endl;
-        cin >> way;
-        if (way == 90){
+        if (way == 5){
+            cout << "Rotate (90), (180) , (270) or (360) degrees?" << endl;
+            cin >> way;
+            if (way == 90){
             R_90_degree();
-        }else if (way == 180){
+            }else if (way == 180){
             R_180_degree ();
-        }else if (way == 270){
+            }else if (way == 270){
             R_270_degree();
-        }else if (way == 360){
+            }else if (way == 360){
             R_360_degree ();
         }
-
+    }
+        if (way == 6){
+            Darken_Lighten_image();
         }
   saveImage();
     }
@@ -165,13 +168,6 @@ for (int i = 0; i < SIZE; i++) {
   }
 //_________________________________________
 void R_360_degree (){
-    /*
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j< SIZE; j++) {
-            image[i][j] = image[i][j];
-        }
-    }
-*/
 }
 //_________________________________________
 void  black_and_white() {
@@ -197,3 +193,47 @@ void  Flip_Image() {
 
 }
 //_________________________________________
+void Darken_Lighten_image(){
+
+    int choice;
+    cout<<"Press 0 for lighten, 1 for darken..."<<endl;
+    cin>>choice;
+    if (choice ==1){
+
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j< SIZE; j++) {
+                if (image[i][j]>50)
+                    image[i][j]-=50;
+
+            }
+        }
+
+    }
+
+    else{
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j< SIZE; j++) {
+                if (image[i][j]<205)
+                    image[i][j]+=50;
+
+            }
+        }
+    }
+
+}
+//_________________________________________
+void Merge_Filter() {
+    char imageFileName2[100];
+    cout << "Enter the source image2 file name: ";
+    cin >> imageFileName2;
+    strcat(imageFileName2, ".bmp");
+    readGSBMP(imageFileName2, image2);
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            image[i][j] = (image[i][j] + image2[i][j]) / 2;
+
+        }
+    }
+}
+//_________________________________________
+
