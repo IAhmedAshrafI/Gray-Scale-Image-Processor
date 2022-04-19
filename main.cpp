@@ -29,6 +29,7 @@ void  black_and_white();
 void  Flip_Image();
 void Darken_Lighten_image();
 void Merge_Filter();
+void Enlarge_Image();
 int main()
 {
   string start="1";
@@ -52,13 +53,14 @@ while (failed){
         cout << endl;
   int way;
   cout << endl;
-    cout <<"choose Filter from 1 to 6:"<< endl;
+    cout <<"choose Filter from 1 to c:"<< endl;
     cout <<"Filter 1: Black and White Image."<< endl;
     cout << "Filter 2: Invert Image."<< endl;
     cout << "Filter 3: Merge Image."<< endl;
     cout <<"Filter 4: Flip Image."<< endl;
     cout << "Filter 5: Rotate Image."<< endl;
     cout << "Filter 6: Darken and Lighten Image."<< endl;
+    cout << "Filter 8: Enlarge Image." << endl;
     cin>>way;
     if (way == 1){
         black_and_white();
@@ -88,6 +90,9 @@ while (failed){
         if (way == 6){
             Darken_Lighten_image();
         }
+        if (way == 8){
+            Enlarge_Image();
+        }
   saveImage();
     }
 }
@@ -104,6 +109,7 @@ int loadImage () {
    // Add to it .bmp extension and load image
    strcat (imageFileName, ".bmp");
    failed = readGSBMP(imageFileName, image);
+    failed = readGSBMP(imageFileName, image2);
     return failed;
 }
 
@@ -243,6 +249,64 @@ void Merge_Filter() {
 
         }
     }
+}
+//_________________________________________
+void Enlarge_Image(){
+  int quart;
+
+  cout<<"Which quarter to enlarge 1, 2, 3 or 4? : ";
+  cin>>quart;
+
+  if (quart == 1){
+    for (int i = 0; i < SIZE; i+=2) {
+      for (int j = 0; j< SIZE; j+=2) {
+
+        image[i][j] = image2[i/2][j/2];
+        image[i+1][j] = image2[i/2][j/2];
+        image[i][j+1] = image2[i/2][j/2];
+        image[i+1][j+1] = image2[i/2][j/2];
+      }
+    }
+  }
+
+  if (quart == 2){
+    for (int i = 0; i < SIZE; i+=2) {
+      for (int j = 0; j< SIZE; j+=2) {
+
+        image[i][j] = image2[i/2][j/2+SIZE/2];
+        image[i+1][j] = image2[i/2][j/2+SIZE/2];
+        image[i][j+1] = image2[i/2][j/2+SIZE/2];
+        image[i+1][j+1] = image2[i/2][j/2+SIZE/2];
+      }
+    }
+  }
+
+  if (quart == 3){
+    for (int i = 0; i < SIZE; i+=2) {
+      for (int j = 0; j< SIZE; j+=2) {
+
+        image[i][j] = image2[i/2+SIZE/2][j/2];
+        image[i+1][j] = image2[i/2+SIZE/2][j/2];
+        image[i][j+1] = image2[i/2+SIZE/2][j/2];
+        image[i+1][j+1] = image2[i/2+SIZE/2][j/2];
+
+      }
+    }
+  }
+
+  if (quart == 4){
+    for (int i = 0; i < SIZE; i+=2) {
+      for (int j = 0; j< SIZE; j+=2) {
+
+        image[i][j] = image2[i/2+SIZE/2][j/2+SIZE/2];
+        image[i+1][j] = image2[i/2+SIZE/2][j/2+SIZE/2];
+        image[i][j+1] = image2[i/2+SIZE/2][j/2+SIZE/2];
+        image[i+1][j+1] = image2[i/2+SIZE/2][j/2+SIZE/2];
+      }
+    }
+  }
+
+
 }
 //_________________________________________
 
