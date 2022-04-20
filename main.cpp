@@ -32,6 +32,8 @@ void Merge_Filter();
 void Enlarge_Image();
 void Shuffle_Image();
 void blur();
+void MirrorImage() ;
+void DetectImageEdges() ;
 int main()
 {
   string start="1";
@@ -512,3 +514,83 @@ void blur(){
 }
 //_________________________________________
 
+void MirrorImage() {
+
+
+
+
+
+
+    int choice ;
+    cout << " 1- mirror left " << endl << "2- mirror right" << endl << "3- mirror up" << endl << "4- mirror down" << endl ;
+    cin >> choice ;
+
+    if (choice == 1){
+            for (int row = 0; row < SIZE ; row++)
+    {
+        for (int col = 0; col < SIZE/2 ; col++)
+        {
+    image[row][col] = image[row][255-col] ;
+
+        }
+    }
+}
+else if (choice == 2){
+        for (int row = 0; row < SIZE ; row++)
+    {
+        for (int col = 0; col < SIZE ; col++)
+        {
+            image[row][255-col] = image[row][col] ;
+        }
+
+        }
+}
+else if (choice == 3) {
+        for (int row = 0; row < SIZE ; row++)
+    {
+        for (int col = 0; col < SIZE ; col++)
+        {
+
+                   image[255-col][row] = image [col][row] ;
+
+        }
+    }
+}
+
+else if (choice == 4 ){
+        for (int row = 0; row < SIZE ; row++)
+    {
+        for (int col = 0; col < SIZE /2 ; col++)
+        {
+            image[col][row] = image [255-col][row] ;
+
+        }
+    }
+}
+}
+
+//_________________________________________________________________
+
+void DetectImageEdges() {
+  for (int x = 0; x < SIZE; x++) {
+    for (int y = 0; y< SIZE; y++) {
+
+        if (image[x][y] > 127)
+            image[x][y] = (255,255);
+        else
+            image[x][y] = 0;
+    }
+  }
+
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (image[i][j] != image[i][j + 1] || image[i][j] != image[i][j - 1] || image[i][j] != image[i + 1][j]) {
+                image2[i][j] = 0;
+            } else {
+                image2[i][j] = 255;
+            }
+        }
+    }
+
+}
+//____________________________________________________________________________________________________
