@@ -30,7 +30,7 @@ void  Flip_Image();
 void Darken_Lighten_image();
 void Merge_Filter();
 void Enlarge_Image();
-void Suffle_Image();
+void Shuffle_Image();
 void blur();
 int main()
 {
@@ -63,7 +63,7 @@ while (failed){
     cout << "Filter 5: Rotate Image."<< endl;
     cout << "Filter 6: Darken and Lighten Image."<< endl;
     cout << "Filter 8: Enlarge Image." << endl;
-    cout << "Filter 11: Suffle Image." << endl;
+    cout << "Filter 11: Shuffle Image." << endl;
     cout << "Filter 12: Blur Image." << endl;
     cin>>way;
     if (way == 1){
@@ -98,7 +98,7 @@ while (failed){
             Enlarge_Image();
         }
         if (way == 11){
-            Suffle_Image();
+            Shuffle_Image();
         }
         if (way == 12){
             blur();
@@ -306,48 +306,196 @@ void Enlarge_Image(){
 
 }
 //_________________________________________
-void Suffle_Image(){
-  int quart;
-
-  cout<<"New order of quarters : ";
-    for (int k = 0; k < 4; k++){
-
-    cin>>quart;
-    if (quart == 1){
-    for (int i = 0; i < SIZE / 2; i++) {
-      for (int j = 0; j< SIZE / 2; j++) {
-
-        image[i][j] = image2[i][j];
-      }
-    }
-    } else if (quart == 2){
-
-    for (int i = 0; i < SIZE / 2; i++) {
-      for (int j = 128; j< SIZE; j++) {
-
-        image[i][j] = image2[i/2][j/2+SIZE/2];
-      }
-    }
-    } else if (quart == 3){
-
-    for (int i = 128; i < SIZE; i++) {
-      for (int j = 0; j< SIZE / 2; j++) {
-
-        image[i][j] = image2[i/2+SIZE/2][j/2];
-      }
-    }
-    }else if (quart == 4){
-
-    for (int i = 128; i < SIZE; i++) {
-      for (int j = 128; j< SIZE; j++) {
-
-        image[i][j] = image2[i/2+SIZE/2][j/2+SIZE/2];
-
-      }
-    }
-  }
-    }
-  }
+void Shuffle_Image() {
+	int x, y, z, a;
+	unsigned char image2[256][256];
+	cout << "New order of quarters : ";
+	cin >> x;
+	if (x == 1) {
+		int m =0, n=0;
+		for (int i = 0; i < 128; i++) {
+			n = 0;
+			for (int j = 0; j < 128; j++) {
+				image2[m][n] = image[i][j];
+				n++;
+			}
+			m++;
+		}
+	}
+	if (x == 2) {
+		int c = 0, g = 0;
+		for (int i = 0; i < 128; i++) {
+			g = 0;
+			for (int j = 128; j < 256; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	if (x == 3) {
+		int c = 0, g = 0;
+		for (int i = 128; i < 256; i++) {
+			g = 0;
+			for (int j = 0; j < 128; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	if (x == 4) {
+		int c = 0, g = 0;
+		for (int i = 128; i < 256; i++) {
+			g = 0;
+			for (int j = 128; j < 256; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	cin >> y;
+	if (y == 1) {
+		int c = 0, g = 128;
+		for (int i = 0; i < 128; i++) {
+			g = 128;
+			for (int j = 0; j < 128; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	if (y == 2) {
+		int c = 0, g = 128;
+		for (int i = 0; i < 128; i++) {
+			g = 128;
+			for (int j = 128; j < 256; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	if (y == 3) {
+		int c = 0, g = 128;
+		for (int i = 128; i < 256; i++) {
+			g = 128;
+			for (int j = 0; j < 128; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	if (y == 4) {
+		int c = 0, g = 128;
+		for (int i = 128; i < 256; i++) {
+			g = 128;
+			for (int j = 128; j < 256; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	cin >> z;
+	if (z == 1) {
+		int c = 128, g = 0;
+		for (int i = 0; i < 128; i++) {
+			g = 0;
+			for (int j = 0; j < 128; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	if (z == 2) {
+		int c = 128, g = 0;
+		for (int i = 0; i < 128; i++) {
+			g = 0;
+			for (int j = 128; j < 256; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	if (z == 3) {
+		int c = 128, g = 0;
+		for (int i =128; i < 256; i++) {
+			g = 0;
+			for (int j = 0; j < 128; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	if (z == 4) {
+		int c = 128, g = 0;
+		for (int i = 128; i < 256; i++) {
+			g = 0;
+			for (int j = 128; j < 256; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	cin >> a;
+	if (a == 1) {
+		int c = 128, g = 128;
+		for (int i = 0; i < 128; i++) {
+			g = 128;
+			for (int j = 0; j < 128; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	if (a == 2) {
+		int c = 128, g = 128;
+		for (int i = 0; i < 128; i++) {
+			g = 128;
+			for (int j = 128; j < 256; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	if (a == 3) {
+		int c = 128, g = 128;
+		for (int i = 128; i < 256; i++) {
+			g = 128;
+			for (int j = 0; j < 128; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	if (a == 4) {
+		int c = 128, g = 128;
+		for (int i = 128; i < 256; i++) {
+			g = 128;
+			for (int j = 128; j < 256; j++) {
+				image2[c][g] = image[i][j];
+				g++;
+			}
+			c++;
+		}
+	}
+	for (int i = 0; i < 256; i++) {
+		for (int j = 0; j < 256; j++) {
+			image[i][j] = image2[i][j];
+		}
+	}
+}
 //_________________________________________
 void blur(){
 
@@ -362,5 +510,5 @@ void blur(){
         }
     }
 }
-//________________________________________
+//_________________________________________
 
