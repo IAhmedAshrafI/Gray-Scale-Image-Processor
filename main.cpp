@@ -32,8 +32,9 @@ void Merge_Filter();
 void Enlarge_Image();
 void Shuffle_Image();
 void blur();
-void MirrorImage() ;
-void DetectImageEdges() ;
+void shrink();
+void MirrorImage();
+void DetectImageEdges();
 int main()
 {
   string start="1";
@@ -64,7 +65,10 @@ while (failed){
     cout <<"Filter 4: Flip Image."<< endl;
     cout << "Filter 5: Rotate Image."<< endl;
     cout << "Filter 6: Darken and Lighten Image."<< endl;
+    cout << "Filter 7: Detect Image Edges." << endl;
     cout << "Filter 8: Enlarge Image." << endl;
+    cout << "Filter 9: Shrink Image." << endl;
+    cout << "Filter 10: Mirror Image." << endl;
     cout << "Filter 11: Shuffle Image." << endl;
     cout << "Filter 12: Blur Image." << endl;
     cin>>way;
@@ -96,8 +100,17 @@ while (failed){
         if (way == 6){
             Darken_Lighten_image();
         }
+        if (way == 7){
+            DetectImageEdges();
+        }
         if (way == 8){
             Enlarge_Image();
+        }
+        if (way == 9){
+            shrink();
+        }
+        if (way == 10){
+            MirrorImage();
         }
         if (way == 11){
             Shuffle_Image();
@@ -518,9 +531,6 @@ void MirrorImage() {
 
 
 
-
-
-
     int choice ;
     cout << " 1- mirror left " << endl << "2- mirror right" << endl << "3- mirror up" << endl << "4- mirror down" << endl ;
     cin >> choice ;
@@ -589,6 +599,32 @@ void DetectImageEdges() {
             } else {
                 image2[i][j] = 255;
             }
+        }
+    }
+
+}
+//____________________________________________________________________________________________________
+void shrink()
+{
+    for (int i =0 ; i <SIZE;i++) {
+        for (int j = 0; j < SIZE; j++) {
+                image[i / 4][j / 4]= image[i][j];
+            }
+
+        }
+
+    for (int i =SIZE/4; i < SIZE; i++){
+        for(int j =0 ; j<SIZE;j++)
+        {
+                image[i][j] = 255;
+
+        }
+    }
+    for (int i =0; i < SIZE; i++){
+        for(int j =SIZE/4; j<SIZE;j++)
+        {
+                image[i][j] = 255;
+
         }
     }
 
