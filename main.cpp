@@ -30,6 +30,8 @@ void  Flip_Image();
 void Darken_Lighten_image();
 void Merge_Filter();
 void Enlarge_Image();
+void Suffle_Image();
+void blur();
 int main()
 {
   string start="1";
@@ -53,7 +55,7 @@ while (failed){
         cout << endl;
   int way;
   cout << endl;
-    cout <<"choose Filter from 1 to c:"<< endl;
+    cout <<"choose Filter from 1 to 12:"<< endl;
     cout <<"Filter 1: Black and White Image."<< endl;
     cout << "Filter 2: Invert Image."<< endl;
     cout << "Filter 3: Merge Image."<< endl;
@@ -61,6 +63,8 @@ while (failed){
     cout << "Filter 5: Rotate Image."<< endl;
     cout << "Filter 6: Darken and Lighten Image."<< endl;
     cout << "Filter 8: Enlarge Image." << endl;
+    cout << "Filter 11: Suffle Image." << endl;
+    cout << "Filter 12: Blur Image." << endl;
     cin>>way;
     if (way == 1){
         black_and_white();
@@ -92,6 +96,12 @@ while (failed){
         }
         if (way == 8){
             Enlarge_Image();
+        }
+        if (way == 11){
+            Suffle_Image();
+        }
+        if (way == 12){
+            blur();
         }
   saveImage();
     }
@@ -258,55 +268,99 @@ void Enlarge_Image(){
   cin>>quart;
 
   if (quart == 1){
-    for (int i = 0; i < SIZE; i+=2) {
-      for (int j = 0; j< SIZE; j+=2) {
+    for (int i = 0; i < SIZE; i++) {
+      for (int j = 0; j< SIZE; j++) {
 
         image[i][j] = image2[i/2][j/2];
-        image[i+1][j] = image2[i/2][j/2];
-        image[i][j+1] = image2[i/2][j/2];
-        image[i+1][j+1] = image2[i/2][j/2];
       }
     }
   }
 
   if (quart == 2){
-    for (int i = 0; i < SIZE; i+=2) {
-      for (int j = 0; j< SIZE; j+=2) {
+    for (int i = 0; i < SIZE; i++) {
+      for (int j = 0; j< SIZE; j++) {
 
         image[i][j] = image2[i/2][j/2+SIZE/2];
-        image[i+1][j] = image2[i/2][j/2+SIZE/2];
-        image[i][j+1] = image2[i/2][j/2+SIZE/2];
-        image[i+1][j+1] = image2[i/2][j/2+SIZE/2];
       }
     }
   }
 
   if (quart == 3){
-    for (int i = 0; i < SIZE; i+=2) {
-      for (int j = 0; j< SIZE; j+=2) {
+    for (int i = 0; i < SIZE; i++) {
+      for (int j = 0; j< SIZE; j++) {
 
         image[i][j] = image2[i/2+SIZE/2][j/2];
-        image[i+1][j] = image2[i/2+SIZE/2][j/2];
-        image[i][j+1] = image2[i/2+SIZE/2][j/2];
-        image[i+1][j+1] = image2[i/2+SIZE/2][j/2];
-
       }
     }
   }
 
   if (quart == 4){
-    for (int i = 0; i < SIZE; i+=2) {
-      for (int j = 0; j< SIZE; j+=2) {
+    for (int i = 0; i < SIZE; i++) {
+      for (int j = 0; j< SIZE; j++) {
 
         image[i][j] = image2[i/2+SIZE/2][j/2+SIZE/2];
-        image[i+1][j] = image2[i/2+SIZE/2][j/2+SIZE/2];
-        image[i][j+1] = image2[i/2+SIZE/2][j/2+SIZE/2];
-        image[i+1][j+1] = image2[i/2+SIZE/2][j/2+SIZE/2];
       }
     }
   }
 
 
+}
+//_________________________________________
+void Suffle_Image(){
+  int quart;
+
+  cout<<"New order of quarters : ";
+    for (int k = 0; k < 4; k++){
+
+    cin>>quart;
+    if (quart == 1){
+    for (int i = 0; i < SIZE / 2; i++) {
+      for (int j = 0; j< SIZE / 2; j++) {
+
+        image[i][j] = image2[i][j];
+      }
+    }
+    } else if (quart == 2){
+
+    for (int i = 0; i < SIZE / 2; i++) {
+      for (int j = 128; j< SIZE; j++) {
+
+        image[i][j] = image2[i/2][j/2+SIZE/2];
+      }
+    }
+    } else if (quart == 3){
+
+    for (int i = 128; i < SIZE; i++) {
+      for (int j = 0; j< SIZE / 2; j++) {
+
+        image[i][j] = image2[i/2+SIZE/2][j/2];
+      }
+    }
+    }else if (quart == 4){
+
+    for (int i = 128; i < SIZE; i++) {
+      for (int j = 128; j< SIZE; j++) {
+
+        image[i][j] = image2[i/2+SIZE/2][j/2+SIZE/2];
+
+      }
+    }
+  }
+    }
+  }
+//_________________________________________
+void blur(){
+
+    double average;
+
+    for (int i = 0; i <SIZE; i++) {
+        for (int j = 0; j<SIZE; j++) {
+            int sum = 0;
+            sum = image[i ][j ] + image[i ][j+1] + image[i][j + 2] + image[i+1][j] + image[i+1][j+1] +image[i+1][j +2] + image[i +2][j ] + image[i + 2][j+1] + image[i + 2][j + 2];
+            average = (sum / 9);
+            image[i][j] = average;
+        }
+    }
 }
 //_________________________________________
 
