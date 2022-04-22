@@ -150,7 +150,10 @@ void saveImage () {
    strcat (imageFileName, ".bmp");
    writeGSBMP(imageFileName, image);
       writeGSBMP(imageFileName, image2);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4fada2d0b2a35a51f52d32b8c6213b21a709f322
 }
 
 //_________________________________________
