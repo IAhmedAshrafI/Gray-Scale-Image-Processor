@@ -118,7 +118,6 @@ while (failed){
         if (way == 12){
             blur();
         }
-  saveImage();
     }
 }
 return 0;
@@ -149,13 +148,7 @@ void saveImage () {
    // Add to it .bmp extension and load image
    strcat (imageFileName, ".bmp");
    writeGSBMP(imageFileName, image);
-      writeGSBMP(imageFileName, image2);
-<<<<<<< HEAD
-
-=======
->>>>>>> 4fada2d0b2a35a51f52d32b8c6213b21a709f322
 }
-
 //_________________________________________
 void R_270_degree() {
 
@@ -170,6 +163,8 @@ for (int i = 0; i < SIZE; i++){
             swap(image[j][i], image[i][j]);
         }
   }
+    saveImage();
+
 }
 //_________________________________________
 void R_90_degree(){
@@ -184,6 +179,8 @@ void R_90_degree(){
             swap(image[i][j], image[j][i]);
         }
   }
+    saveImage();
+
 }
 
 //_________________________________________
@@ -201,6 +198,7 @@ void R_180_degree (){
         }
   }
     }
+  saveImage();
 
     }
 //_________________________________________
@@ -210,9 +208,13 @@ for (int i = 0; i < SIZE; i++) {
         image[i][j] = 255-image[i][j];
     }
 }
+  saveImage();
+
   }
 //_________________________________________
 void R_360_degree (){
+      saveImage();
+
 }
 //_________________________________________
 void  black_and_white() {
@@ -225,6 +227,8 @@ void  black_and_white() {
             image[x][y] = 0;
     }
   }
+    saveImage();
+
 }
 //_________________________________________
 void  Flip_Image() {
@@ -235,6 +239,7 @@ void  Flip_Image() {
  std::swap(image[x][y], image[SIZE - 1 - x][y]) ;
     }
     }
+  saveImage();
 
 }
 //_________________________________________
@@ -264,6 +269,7 @@ void Darken_Lighten_image(){
             }
         }
     }
+  saveImage();
 
 }
 //_________________________________________
@@ -279,6 +285,8 @@ void Merge_Filter() {
 
         }
     }
+      saveImage();
+
 }
 //_________________________________________
 void Enlarge_Image(){
@@ -322,8 +330,7 @@ void Enlarge_Image(){
       }
     }
   }
-
-
+  saveImage();
 }
 //_________________________________________
 void Shuffle_Image() {
@@ -514,7 +521,10 @@ void Shuffle_Image() {
 		for (int j = 0; j < 256; j++) {
 			image[i][j] = image2[i][j];
 		}
+
 	}
+	  saveImage();
+
 }
 //_________________________________________
 void blur(){
@@ -529,6 +539,8 @@ void blur(){
             image[i][j] = average;
         }
     }
+      saveImage();
+
 }
 //_________________________________________
 
@@ -582,6 +594,8 @@ else if (choice == 4 ){
         }
     }
 }
+  saveImage();
+
 }
 
 //_________________________________________________________________
@@ -606,32 +620,45 @@ void DetectImageEdges() {
             }
         }
     }
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+                image[i][j] = image2[i][j] ;
 
 }
+        }
+        saveImage();
+}
+
 //____________________________________________________________________________________________________
-void shrink()
-{
-    for (int i =0 ; i <SIZE;i++) {
-        for (int j = 0; j < SIZE; j++) {
-                image[i / 4][j / 4]= image[i][j];
+void shrink(){
+    string number;
+    int Wtrue;
+    Wtrue = true;
+    while (Wtrue) {
+        cout << "press \" 4 \" for 1/4... press \" 3 \" for 1/3...press \"2\" for 1/2: ";
+        cin >> number;
+        if (number == "2" || number == "3" || number == "4"){
+            break;
+        }
+
+        else {
+            cout << "enter a valid input ! " << endl;
+        }
+    }
+    for (int i = 0; i < SIZE; i+=2) {
+        for (int j = 0; j< SIZE; j+=2) {
+
+            if (number == "2"){
+                image[i/2][j/2] = image2[i][j];
             }
-
-        }
-
-    for (int i =SIZE/4; i < SIZE; i++){
-        for(int j =0 ; j<SIZE;j++)
-        {
-                image[i][j] = 255;
-
+            else if (number == "3"){
+                image[i/3][j/3] = image2[i][j];
+            }
+            else if (number == "4"){
+                image[i/4][j/4] = image2[i][j];
+            }
         }
     }
-    for (int i =0; i < SIZE; i++){
-        for(int j =SIZE/4; j<SIZE;j++)
-        {
-                image[i][j] = 255;
-
-        }
-    }
-
+    saveImage();
 }
 //____________________________________________________________________________________________________
