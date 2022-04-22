@@ -62,7 +62,7 @@ while (failed){
     cout <<"Filter 1: Black and White Image."<< endl;
     cout << "Filter 2: Invert Image."<< endl;
     cout << "Filter 3: Merge Image."<< endl;
-    cout <<"Filter 4: Flip Image."<< endl;
+    cout << "Filter 4: Flip Image."<< endl;
     cout << "Filter 5: Rotate Image."<< endl;
     cout << "Filter 6: Darken and Lighten Image."<< endl;
     cout << "Filter 7: Detect Image Edges." << endl;
@@ -149,6 +149,8 @@ void saveImage () {
    // Add to it .bmp extension and load image
    strcat (imageFileName, ".bmp");
    writeGSBMP(imageFileName, image);
+      writeGSBMP(imageFileName, image2);
+
 }
 
 //_________________________________________
