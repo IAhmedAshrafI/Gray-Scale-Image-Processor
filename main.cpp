@@ -149,6 +149,7 @@ void saveImage () {
    // Add to it .bmp extension and load image
    strcat (imageFileName, ".bmp");
    writeGSBMP(imageFileName, image);
+      writeGSBMP(imageFileName, image2);
 }
 
 //_________________________________________
